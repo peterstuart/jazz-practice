@@ -1,6 +1,16 @@
 use rand::prelude::*;
-use std::{collections::HashSet, fmt};
+use std::fmt;
 use strum::{Display, EnumIter, IntoEnumIterator};
+
+trait EnumRandom {
+    fn random() -> Self;
+}
+
+impl<T: IntoEnumIterator> EnumRandom for T {
+    fn random() -> Self {
+        Self::iter().choose(&mut thread_rng()).unwrap()
+    }
+}
 
 #[derive(Clone, Copy, Debug, Display, EnumIter, Eq, PartialEq)]
 pub enum Root {
@@ -23,12 +33,6 @@ pub enum Root {
     B,
 }
 
-impl Root {
-    pub fn random() -> Self {
-        Self::iter().choose(&mut thread_rng()).unwrap()
-    }
-}
-
 #[derive(Clone, Copy, Debug, Display, EnumIter, Eq, Hash, PartialEq)]
 pub enum ChordQuality {
     #[strum(to_string = "Δ7")]
@@ -47,24 +51,12 @@ pub enum ChordQuality {
     Dominant7Sus4,
 }
 
-impl ChordQuality {
-    pub fn random() -> Self {
-        Self::iter().choose(&mut thread_rng()).unwrap()
-    }
-}
-
 #[derive(Clone, Copy, Debug, Display, EnumIter, Eq, PartialEq)]
 pub enum ChordPitch {
     Root,
     Third,
     Fifth,
     Seventh,
-}
-
-impl ChordPitch {
-    pub fn random() -> Self {
-        Self::iter().choose(&mut thread_rng()).unwrap()
-    }
 }
 
 #[derive(Clone, Copy, Debug, Display, EnumIter, Eq, PartialEq)]
@@ -78,17 +70,11 @@ pub enum Approach {
     OneAboveOneBelow,
 }
 
-impl Approach {
-    pub fn random() -> Self {
-        Self::iter().choose(&mut thread_rng()).unwrap()
-    }
-}
-
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct Assignment {
     root: Root,
-    chord_pitch: ChordPitch,
     chord_quality: ChordQuality,
+    chord_pitch: ChordPitch,
     approach: Approach,
 }
 
@@ -96,10 +82,22 @@ impl Assignment {
     pub fn random() -> Self {
         Self {
             root: Root::random(),
-            chord_pitch: ChordPitch::random(),
             chord_quality: ChordQuality::random(),
+            chord_pitch: ChordPitch::random(),
             approach: Approach::random(),
         }
+    }
+
+    pub fn chord_string(&self) -> String {
+        format!("{}{}", self.root, self.chord_quality)
+    }
+
+    pub fn chord_pitch_string(&self) -> String {
+        self.chord_pitch.to_string()
+    }
+
+    pub fn approach_string(&self) -> String {
+        self.approach.to_string()
     }
 }
 

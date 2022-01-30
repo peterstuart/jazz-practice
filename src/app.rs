@@ -5,12 +5,17 @@ use yew::prelude::*;
 pub fn app() -> Html {
     let assignment = use_state_eq(|| Assignment::random());
 
-    let formatted = assignment.to_string();
-    let on_generate = Callback::from(move |_| assignment.set(Assignment::random()));
+    let on_generate = {
+        let assignment = assignment.clone();
+        Callback::from(move |_| assignment.set(Assignment::random()))
+    };
 
     html! {
         <main>
-            <p>{ formatted }</p>
+            <p>{ assignment.chord_string() }</p>
+            <p>{ assignment.chord_pitch_string() }</p>
+            <p>{ assignment.approach_string() }</p>
+
             <button onclick={on_generate}>{ "Generate" }</button>
         </main>
     }
