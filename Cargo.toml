@@ -11,4 +11,7 @@ categories = ["gui", "wasm", "web-programming"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
+getrandom = { version = "0.2", features = ["js"] }
+rand = "0.8.4"
+strum = { version = "0.23.0", features = ["derive"] }
 yew = "0.19"
