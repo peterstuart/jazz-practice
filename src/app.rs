@@ -11,12 +11,12 @@ pub fn app() -> Html {
     };
 
     html! {
-        <main>
-            <p>{ assignment.chord_string() }</p>
-            <p>{ assignment.chord_pitch_string() }</p>
-            <p>{ assignment.approach_string() }</p>
-
-            <button onclick={on_generate}>{ "Generate" }</button>
-        </main>
+        <section class="section is-flex is-vcentered">
+            <div class="container has-text-centered">
+                <h1 class="title">{ assignment.chord_string() }</h1>
+                <p class="subtitle">{ assignment.chord_pitch_string() }<br />{ assignment.approach_string() }</p>
+                <button onclick={on_generate} class="button is-primary">{ "Generate" }</button>
+            </div>
+        </section>
     }
 }
