@@ -61,12 +61,19 @@ pub enum ChordPitch {
 
 #[derive(Clone, Copy, Debug, Display, EnumIter, Eq, PartialEq)]
 pub enum Approach {
+    #[strum(to_string = "Two above")]
     TwoAbove,
+    #[strum(to_string = "Two below")]
     TwoBelow,
+    #[strum(to_string = "Two above, two below")]
     TwoAboveTwoBelow,
+    #[strum(to_string = "Two below, two above")]
     TwoBelowTwoAbove,
+    #[strum(to_string = "One above")]
     OneAbove,
+    #[strum(to_string = "One below")]
     OneBelow,
+    #[strum(to_string = "One above, one below")]
     OneAboveOneBelow,
 }
 
