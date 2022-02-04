@@ -39,6 +39,6 @@ jobs:
     - name: Build
       run: trunk build
     - name: Run tests
-      run: cargo test --verbose
+      run: cargo test
     - name: Clippy
       run: cargo clippy
