@@ -3,7 +3,7 @@ use yew::prelude::*;
 
 #[function_component(App)]
 pub fn app() -> Html {
-    let assignment = use_state_eq(|| Assignment::random());
+    let assignment = use_state_eq(Assignment::random);
 
     let on_generate = {
         let assignment = assignment.clone();
