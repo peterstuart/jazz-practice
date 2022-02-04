@@ -1,7 +1,7 @@
-mod app;
 mod model;
+mod ui;
 
-use app::App;
+use ui::App;
 
 fn main() {
     yew::start_app::<App>();

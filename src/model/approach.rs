@@ -1,37 +1,5 @@
-use rand::prelude::*;
-use std::fmt;
-use strum::{Display, EnumIter, IntoEnumIterator};
-
-trait EnumRandom {
-    fn random() -> Self;
-}
-
-impl<T: IntoEnumIterator> EnumRandom for T {
-    fn random() -> Self {
-        Self::iter().choose(&mut thread_rng()).unwrap()
-    }
-}
-
-#[derive(Clone, Copy, Debug, Display, EnumIter, Eq, PartialEq)]
-pub enum Root {
-    C,
-    #[strum(to_string = "C♯/D♭")]
-    CSharpDFlat,
-    D,
-    #[strum(to_string = "D♯/E♭")]
-    DSharpEFlat,
-    E,
-    F,
-    #[strum(to_string = "F♯/G♭")]
-    FSharpGFlat,
-    G,
-    #[strum(to_string = "A♭")]
-    AFlat,
-    A,
-    #[strum(to_string = "B♭")]
-    BFlat,
-    B,
-}
+use super::{base::*, enum_random::EnumRandom};
+use strum::{Display, EnumIter};
 
 #[derive(Clone, Copy, Debug, Display, EnumIter, Eq, Hash, PartialEq)]
 pub enum ChordQuality {
@@ -49,14 +17,6 @@ pub enum ChordQuality {
     MinorMajor7,
     #[strum(to_string = "7sus4")]
     Dominant7Sus4,
-}
-
-#[derive(Clone, Copy, Debug, Display, EnumIter, Eq, PartialEq)]
-pub enum ChordPitch {
-    Root,
-    Third,
-    Fifth,
-    Seventh,
 }
 
 #[derive(Clone, Copy, Debug, Display, EnumIter, Eq, PartialEq)]
@@ -105,15 +65,5 @@ impl Assignment {
 
     pub fn approach_string(&self) -> String {
         self.approach.to_string()
-    }
-}
-
-impl fmt::Display for Assignment {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        format!(
-            "{}{} {} {}",
-            self.root, self.chord_quality, self.chord_pitch, self.approach
-        )
-        .fmt(f)
     }
 }
