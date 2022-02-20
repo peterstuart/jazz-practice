@@ -21,6 +21,8 @@ pub enum ChordQuality {
     Major7Sharp5,
     #[strum(to_string = "Δ7♭5")]
     Major7Flat5,
+    #[strum(to_string = "7+5")]
+    Dominant7Sharp5,
 }
 
 #[derive(Clone, Copy, Debug, Display, EnumIter, Eq, PartialEq)]
@@ -43,6 +45,8 @@ pub enum Approach {
     OneBelowOneAbove,
     #[strum(to_string = "One below, two above")]
     OneBelowTwoAbove,
+    #[strum(to_string = "Two above, one below")]
+    TwoAboveOneBelow,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
