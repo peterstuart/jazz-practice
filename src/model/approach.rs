@@ -51,6 +51,8 @@ pub enum Approach {
     TwoAboveOneBelow,
     #[strum(to_string = "Two below, one above")]
     TwoBelowOneAbove,
+    #[strum(to_string = "One above, two below")]
+    OneAboveTwoBelow,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
