@@ -9,5 +9,5 @@ license = "MIT"
 [dependencies]
 getrandom = { version = "0.2", features = ["js"] }
 rand = "0.8.4"
-strum = { version = "0.23.0", features = ["derive"] }
+strum = { version = "0.24.1", features = ["derive"] }
 yew = "0.19"
